@@ -11,16 +11,15 @@ def test_home(base_url):
         print(f"Error: {response.status_code} - {response.text}")
 
 def test_sentiment(base_url,data):
-    url = base_url + '/sentiment'
     # Send a POST request to the endpoint
-    response = requests.post(url, json=data)
+    response = requests.post(base_url, json=data)
 
     # Check if the request was successful (status code 200)
     if response.status_code == 200:
         # Print the sentiment analysis results
         results = response.json()
         for result in results:
-            print(f"Sentiment: {result['label']}, Score: {result['score']}")
+            print(f"Text: {result['text']}, Sentiment: {result['sentiment']}")
     else:
         print(f"Error: {response.status_code} - {response.text}")
 
