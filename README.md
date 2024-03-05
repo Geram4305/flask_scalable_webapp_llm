@@ -9,9 +9,9 @@
 
 1. Install Docker desktop if not available from https://docs.docker.com/desktop/release-notes/
 2. Keep the docker daemon running (in simpler terms keep docker desktop open).
-3. Glone the git repo into a folder of choice, and navigate to the root folder in cmd. 
+3. Clone the git repo into a folder of choice, and navigate to the root folder in cmd. 
 4. Run "docker-compose up --build". It will take a few minutes to start up the application.
-5. Once application is started up, it will be hosted n localhost. Open a browser type in http://localhost to access the application.
+5. Once application is started up, it will be hosted in localhost. Open a browser, type in http://localhost to access the application.
 
 ## Scale up and down
 
@@ -23,11 +23,11 @@
 ## Get inference from LLM (Huggingface - DistilBert) for sentiment analysis
 
 1. Kill all containers that are running currently by hitting ctrl+C. Run "docker-compose down" to remove and clear all.
-2. Run "docker-compose up --build --scale app=3". This will churn up 3 instances of the application. 
-3. Run test_app.py, which makes request to http://localhost/sentiment .
-The script has texts like "It is worth it", "It is a waste of time and money" already in it which will be used to get inference from DistilBert. The returned result is a label identifying the sentiment of the text and its condidence score. 
+2. Run "docker-compose up --build". This will churn up an instances of the application. 
+3. Run test_app.py, which makes request to http://localhost/ with post method.
+The script has texts like "It is worth it", "It is a waste of time and money" already in it. This will be used to get inference from DistilBert. The returned result is a label identifying the sentiment of the text and its condidence score. 
 
-## Reasons for choosing the model - DistilBERT
+## Reasons for choosing the model - DistilBERT (distilbert-base-uncased-finetuned-sst-2-english)
 
 1. "distilbert-base-uncased-finetuned-sst-2-english" is the model chosen for sentiment analysis. Assuming only English sentences are used by the end-user. It is a specialized variant of the DistilBERT model that has been fine-tuned specifically for sentiment analysis on English text using the SST-2 dataset. It can be readily used for English sentences.This is also the default model used for sentiment analysis in hugging face transformers. 
 2. DistilBERT is a distilled version of the BERT (Bidirectional Encoder Representations from Transformers) model. It retains much of the performance of BERT while being smaller and faster.

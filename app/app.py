@@ -2,17 +2,10 @@ from flask import Flask, request, jsonify
 import socket
 from transformers import DistilBertTokenizer, TFDistilBertForSequenceClassification
 import tensorflow as tf
-import numpy as np
 
 app = Flask(__name__)
 
-@app.route("/")
-def home():
-    text = f"Hello! Using container ID: {socket.gethostname()}"
-    return jsonify([{'text':text}])
-
-@app.route('/sentiment', methods=['POST'])
-def analyze_sentiment():
+def analyze_sentiment(texts):
     try:
         texts = request.get_json()['texts']
         if not texts:
@@ -38,13 +31,27 @@ def analyze_sentiment():
 
         # Map the predicted labels to sentiments
         sentiments = ["positive" if label == 1 else "negative" for label in predicted_labels]
+
+        # Create a dictionary with text and its corresponding sentiment
+        result = [{'text': text, 'sentiment': sentiment} for text, sentiment in zip(texts, sentiments)]
      
-        return jsonify(sentiments),200
+        return jsonify(result),200
     
     except ValueError as e:
         return jsonify({'error': str(e)}), 400
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+
+@app.route("/", methods=['GET','POST'])
+def home():
+    if request.method == 'GET':
+        text = f"Hello! Using container ID: {socket.gethostname()}. Application is up and running, send a post request to same route."
+        return jsonify([{'text':text}])
+    else:
+        data = request.get_json()
+        return analyze_sentiment(data.get('texts', []))
+
 
 if __name__== "__main__":
     app.run()
