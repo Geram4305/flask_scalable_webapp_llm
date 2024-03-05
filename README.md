@@ -33,5 +33,9 @@ The script has texts like "It is worth it", "It is a waste of time and money" al
 2. DistilBERT is a distilled version of the BERT (Bidirectional Encoder Representations from Transformers) model. It retains much of the performance of BERT while being smaller and faster.
 3. Bidirectional models like DistilBERT process text in both directions (left-to-right and right-to-left), allowing them to capture contextual information from both preceding and succeeding words in a sentence. This bidirectional context understanding helps the model to better comprehend the meaning of each word in the context of the whole sentence, which is essential for sentiment analysis.
 4. Capture long-range dependencies in sentences which is necessary to understanding the relationships between words that are far apart in the text
-5. Its performance, combined with its efficiency, makes it a good choice for sentiment analysis applications.
-6. Restrictions: Only two classes - positive & negative.
+5. Restrictions: Only two classes - positive & negative.
+
+### Reasons for choosing DistilBERT for this demo
+1. It has faster inference, resource-efficient compared to a lot of other LLMs, while maintaining a high accuracy on sentiment analysis tasks.
+2. Ideal for real-time applications where quick responses are needed.
+3. Hence chose this model for demo purposes.
