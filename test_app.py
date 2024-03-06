@@ -25,7 +25,7 @@ def test_sentiment(base_url,data):
 
 
 # Define the base URL of the Flask home
-base_url = 'http://localhost'
+base_url = 'http://localhost:8080'
 
 # Define the list of texts to analyze sentiment
 texts = ["It is worth it", "It is a waste of time and money"]
