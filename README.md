@@ -3,7 +3,8 @@
 2. Flask is used to develop the web application logic. Gunicorn is used as wsgi server and Nginx as web server specifically for load balancing. 
 3. Docker is used to containerize the application. 
 4. While creating docker container, python 3.9-slim used to keep size to minimum. 
-5. Docker creates a separate user and group for running applications. It helps to isolate the application's permissions and resources from the rest of the system, reducing security related risks.
+5. A separate user and group for running applications is created in docker. It helps to isolate the application's permissions and resources from the rest of the system, reducing security related risks.
+6. Both Nginx and Flask run from non-privileged ports.
 
 ## Please follow the following instrcutions to run the app successfully.
 
