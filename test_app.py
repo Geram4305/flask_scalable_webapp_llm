@@ -11,6 +11,7 @@ def test_home(base_url):
         print(f"Error: {response.status_code} - {response.text}")
 
 def test_sentiment(base_url,data):
+    print("\nNow posting request for sentiment inference. Please wait for results.\n")
     # Send a POST request to the endpoint
     response = requests.post(base_url, json=data)
 
